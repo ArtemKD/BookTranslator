@@ -1,6 +1,4 @@
-﻿using System.Transactions;
-
-namespace FileTranslator
+﻿namespace FileTranslator
 {
     internal class FileTranslator
     {
@@ -36,7 +34,7 @@ namespace FileTranslator
         public async Task<List<Reply>> Translate()
         {
             Reply requirements = CheckRequirements();
-            if(requirements.Code != 200)
+            if (requirements.Code != 200)
             {
                 return new List<Reply>() { requirements };
             }
@@ -44,7 +42,7 @@ namespace FileTranslator
             cts = new CancellationTokenSource();
             List<Reply> replyList = new List<Reply>();
 
-            foreach(String pathFile in pathFiles)
+            foreach (String pathFile in pathFiles)
             {
                 currentFileLabel.Invoke(() => currentFileLabel.Text = Path.GetFileName(pathFile));
                 if (!File.Exists(pathFile))
@@ -78,7 +76,7 @@ namespace FileTranslator
                 {
                     Code = translationStatus.Code
                 };
-                switch(translationStatus.Code)
+                switch (translationStatus.Code)
                 {
                     case 200:
                         currentFileReply.Message = $"Файл: {Path.GetFileName(pathFile)} Ok";

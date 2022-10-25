@@ -56,7 +56,6 @@ namespace YandexCloud
             {
                 requestJsonData = JsonSerializer.SerializeToDocument<Dictionary<String, String>>(data);
                 responce = await RetryPolicy.policy.ExecuteAsync(() => translateConnection.PostAsJsonAsync<JsonDocument>(translationUri, requestJsonData, ct));
-                responce = await translateConnection.PostAsJsonAsync<JsonDocument>(translationUri, requestJsonData, ct);
                 responceJsonData = await responce.Content.ReadFromJsonAsync<JsonDocument>();
             }
             catch(HttpRequestException requestEx)
